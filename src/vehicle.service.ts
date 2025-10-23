@@ -4,7 +4,7 @@ import { Vehicle } from './entities/vehicle.entity';
 import { Repository } from 'typeorm';
 import { CreateVehicleInput } from './dto/create-vehicle.input';
 import { UpdateVehicleInput } from './dto/update-vehicle.input';
-import { SearchVehicleinput } from './dto/search-vehicle.input';
+import { SearchVehicleInput } from './dto/search-vehicle.input';
 
 @Injectable()
 export class VehicleService {
@@ -53,11 +53,11 @@ export class VehicleService {
     }
     throw new NotFoundException(`Record cannot find by id ${id}`)
   }
-  async search(search: SearchVehicleinput): Promise<Vehicle[]> {
+  async search(search: SearchVehicleInput): Promise<Vehicle[]> {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
 
-    if (search.car_model) {
-      query.andWhere('vehicle.car_model ILIKE:car_model', { car_model: `%${search.car_model}%` });
+    if (search?.car_model) {
+      query.andWhere('vehicle.car_model ILIKE :car_model', { car_model: `%${search.car_model}%` });
     }
     return query.getMany()
   }

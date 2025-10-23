@@ -4,7 +4,7 @@ import { Vehicle } from './entities/vehicle.entity';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateVehicleInput } from './dto/create-vehicle.input';
 import { UpdateVehicleInput } from './dto/update-vehicle.input';
-import { SearchVehicleinput } from './dto/search-vehicle.input';
+import { SearchVehicleInput } from './dto/search-vehicle.input';
 
 
 @Resolver(() => Vehicle)
@@ -36,8 +36,8 @@ export class VehicleResolver {
     return this.vehicleService.remove(id);
   }
   @Query(() => [Vehicle], { name: "searchVehicle" })
-  search(@Args('search', { type: () => SearchVehicleinput, nullable: true })
-  search: SearchVehicleinput,
+  search(@Args('search', { type: () => SearchVehicleInput, nullable: true })
+  search: SearchVehicleInput,
   ): Promise<Vehicle[]> {
     return this.vehicleService.search(search)
   }

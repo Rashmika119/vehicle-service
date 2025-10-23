@@ -22,10 +22,10 @@ scalar DateTime
 type Query {
   getAllVehicles: [Vehicle!]!
   findVehicleById(id: String!): Vehicle!
-  searchVehicle(search: SearchVehicleinput): [Vehicle!]!
+  searchVehicle(search: SearchVehicleInput): [Vehicle!]!
 }
 
-input SearchVehicleinput {
+input SearchVehicleInput {
   car_model: String
 }
 
