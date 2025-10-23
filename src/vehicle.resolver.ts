@@ -5,6 +5,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateVehicleInput } from './dto/create-vehicle.input';
 import { UpdateVehicleInput } from './dto/update-vehicle.input';
 import { SearchVehicleInput } from './dto/search-vehicle.input';
+import { PaginationInput } from './dto/pagination.input';
 
 
 @Resolver(() => Vehicle)
@@ -12,8 +13,11 @@ export class VehicleResolver {
   constructor(private readonly vehicleService: VehicleService) { }
 
   @Query(() => [Vehicle], { name: "getAllVehicles" })
-  findAll() {
-    return this.vehicleService.findAll();
+  findAll(
+    @Args('pagination',{nullable:true})
+    pagination?:PaginationInput
+  ) {
+    return this.vehicleService.findAll(pagination);
   }
 
   @Mutation(() => Vehicle, { name: "createVehicle" })

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateVehicleInput } from './dto/create-vehicle.input';
 import { UpdateVehicleInput } from './dto/update-vehicle.input';
 import { SearchVehicleInput } from './dto/search-vehicle.input';
+import { PaginationInput } from './dto/pagination.input';
 
 @Injectable()
 export class VehicleService {
@@ -13,9 +14,15 @@ export class VehicleService {
   constructor(@InjectRepository(Vehicle) private vehicleRepository: Repository<Vehicle>,) { }
 
 
-  async findAll(): Promise<Vehicle[]> {
+  async findAll(pagination?:PaginationInput): Promise<Vehicle[]> {
+    const page=pagination?.page || 1;
+    const limit=pagination?.limit || 100;
+    const skip =(page-1)*limit
+
     return this.vehicleRepository.find({
-      order: { manufactured_date: 'ASC' }
+      order: { manufactured_date: 'ASC' },
+      take:limit,
+      skip:skip,
     });
   }
 
