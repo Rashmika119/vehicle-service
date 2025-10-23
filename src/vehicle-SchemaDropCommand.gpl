@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Vehicle {
+  id: String!
+  first_name: String!
+  last_name: String!
+  email: String!
+  car_make: String!
+  car_model: String!
+  vin: String!
+  manufactured_date: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getAllVehicles: [Vehicle!]!
+  findVehicleById(id: String!): Vehicle!
+  searchVehicle(search: SearchVehicleinput): [Vehicle!]!
+}
+
+input SearchVehicleinput {
+  car_model: String
+}
+
+type Mutation {
+  createVehicle(vehicleInput: CreateVehicleInput!): Vehicle!
+  updateVehiclle(id: String!, vehicle: UpdateVehicleInput!): Vehicle!
+  removeVehicle(id: String!): Vehicle!
+}
+
+input CreateVehicleInput {
+  first_name: String
+  last_name: String
+  email: String
+  car_make: String
+  car_model: String
+  vin: String
+  manufactured_date: DateTime
+}
+
+input UpdateVehicleInput {
+  first_name: String!
+  last_name: String!
+  email: String!
+  car_make: String!
+  car_model: String!
+  vin: String!
+  manufactured_date: DateTime!
+}
