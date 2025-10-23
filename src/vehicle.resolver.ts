@@ -17,8 +17,8 @@ export class VehicleResolver {
   }
 
   @Mutation(() => Vehicle, { name: "createVehicle" })
-  create(@Args('vehicleInput') vehicle: CreateVehicleInput) {
-    this.vehicleService.create(vehicle);
+  create(@Args('vehicleInput') vehicle: CreateVehicleInput,) {
+    return this.vehicleService.create(vehicle);
   }
 
   @Query(() => Vehicle, { name: "findVehicleById" })

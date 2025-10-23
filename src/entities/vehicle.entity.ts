@@ -37,22 +37,22 @@ export class Vehicle {
     @Column()
     manufactured_date: Date
 
-    // @Field(()=>Int) 
-    // get age():number{
-    //     const today=new Date();
-    //     const manufactured=new Date(this.manufactured_date);
+    @Field(()=>Int) 
+    get age():number{
+        const today=new Date();
+        const manufactured=new Date(this.manufactured_date);
 
-    //     let age_of_vehicle=today.getFullYear()-manufactured.getFullYear()
-    //     const month_gap=today.getMonth()-manufactured.getMonth()
-    //     const date_gap=today.getDate()-manufactured.getDate()
+        let age_of_vehicle=today.getFullYear()-manufactured.getFullYear()
+        const month_gap=today.getMonth()-manufactured.getMonth()
+        const date_gap=today.getDate()-manufactured.getDate()
 
-    //     if(month_gap<0 || month_gap==0 && date_gap<0){
-    //         age_of_vehicle--;
-    //     }
+        if(month_gap<0 || month_gap==0 && date_gap<0){
+            age_of_vehicle--;
+        }
 
-    //     return age_of_vehicle;   
+        return age_of_vehicle;   
 
-    // }
+    }
     
 
 
